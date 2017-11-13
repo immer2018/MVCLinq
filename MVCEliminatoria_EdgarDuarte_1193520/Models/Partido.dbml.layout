@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Partido">
+  <DataContextMoniker Name="/PartidoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="90227f58-bfe6-4234-b334-ef52197d3245" absoluteBounds="0.5, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/PartidoDataContext/Detalle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0c7efd24-423c-4294-ac14-ff9d9d48d225" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a7fd81e2-562b-4efd-b837-2bc71d3223dd" absoluteBounds="3.625, 0.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/PartidoDataContext/Equipo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bade56a5-6b66-488e-9d64-d37d1ec81c77" absoluteBounds="3.6399999999999997, 1.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02e2ddaa-ebec-42ba-8caa-4b9ad4018d93" absoluteBounds="8.125, 1.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/PartidoDataContext/Partido" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b8e872e1-e284-4c0b-99ae-3261c30cbb25" absoluteBounds="8.14, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.625 : 1.69314697265625); (8.125 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PartidoDataContext/Equipo/Equipo_Partido" />
+      <nodes>
+        <classShapeMoniker Id="a7fd81e2-562b-4efd-b837-2bc71d3223dd" />
+        <classShapeMoniker Id="02e2ddaa-ebec-42ba-8caa-4b9ad4018d93" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.625 : 1.47157348632813); (8.125 : 1.47157348632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PartidoDataContext/Equipo/Equipo_Partido1" />
+      <nodes>
+        <classShapeMoniker Id="a7fd81e2-562b-4efd-b837-2bc71d3223dd" />
+        <classShapeMoniker Id="02e2ddaa-ebec-42ba-8caa-4b9ad4018d93" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

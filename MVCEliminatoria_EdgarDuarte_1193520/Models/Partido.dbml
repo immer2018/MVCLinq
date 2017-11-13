@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="partidoDB" Class="PartidoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=EDGAR\SQLEXPRESS;Initial Catalog=partidoDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="partidoDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.detalle" Member="Detalle">
+    <Type Name="Detalle">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkIdFecha" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="goles1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="goles2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.equipo" Member="Equipo">
+    <Type Name="Equipo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="puntos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Equipo_Partido" Member="Partido" ThisKey="id" OtherKey="idequipo1" Type="Partido" />
+      <Association Name="Equipo_Partido1" Member="Partido1" ThisKey="id" OtherKey="idequipo2" Type="Partido" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Partido" Member="Partido">
+    <Type Name="Partido">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idequipo1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idequipo2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="goles1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="goles2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Equipo_Partido" Member="Equipo" ThisKey="idequipo1" OtherKey="id" Type="Equipo" IsForeignKey="true" />
+      <Association Name="Equipo_Partido1" Member="Equipo1" ThisKey="idequipo2" OtherKey="id" Type="Equipo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.RegistroDetalleFecha" Method="RegistroDetalleFecha">
+    <Parameter Name="fecha" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="codequipo1" Type="System.Int32" DbType="Int" />
+    <Parameter Name="codequipo2" Type="System.Int32" DbType="Int" />
+    <Parameter Name="codigoFecha" Type="System.Int32" DbType="Int" />
+    <Parameter Name="gol1" Type="System.Int32" DbType="Int" />
+    <Parameter Name="gol2" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SPRegistroPartido" Method="SPRegistroPartido">
+    <Parameter Name="codequipo1" Type="System.Int32" DbType="Int" />
+    <Parameter Name="codequipo2" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fecha" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="gol1" Type="System.Int32" DbType="Int" />
+    <Parameter Name="gol2" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
