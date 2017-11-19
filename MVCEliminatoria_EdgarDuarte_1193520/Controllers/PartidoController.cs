@@ -10,8 +10,14 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Controllers
     public class PartidoController : Controller
     {
         private PartidoDataContext db = new PartidoDataContext();
-        // listado de equipos organizados por puntaje
+        // tabla de posiciones de  los equipos
         public ActionResult Index()
+        {
+            var listadoEquipo = db.SP_ListarPosiciones();
+            return View(listadoEquipo);
+        }
+        // los equipos que se encuentran registrados y cuantos puntos tienen
+        public ActionResult ListadoEquipos()
         {
             var listadoEquipo = from eq in db.Equipo orderby eq.puntos descending select eq;
             return View(listadoEquipo);
@@ -31,7 +37,7 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Controllers
                 // insertar datos del equipo
                 db.Equipo.InsertOnSubmit(objEquipo);
                 db.SubmitChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ListadoEquipos");
             }
             catch
             {
@@ -88,12 +94,12 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Controllers
             }
         }
         [HttpPost]
-        public ActionResult RegistroDetalle(Partido objDetalle)
+        public ActionResult RegistroDetalle(Partido objDetalle )
         {
             try
             {
-
                 // insertar datos del equipo
+               // db.RegistroDetalleFecha(objfecha.fecha1, objfecha.fkIdE1, objfecha.fkIdE2, objDetalle.goles1, objDetalle.goles2);
                 db.SPRegistroPartido(objDetalle.idequipo1, objDetalle.idequipo2, objDetalle.fecha, objDetalle.goles1, objDetalle.goles2);
                 return RedirectToAction("Index");
             }

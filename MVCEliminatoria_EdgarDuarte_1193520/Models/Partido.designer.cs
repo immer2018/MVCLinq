@@ -30,9 +30,6 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Models
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertDetalle(Detalle instance);
-    partial void UpdateDetalle(Detalle instance);
-    partial void DeleteDetalle(Detalle instance);
     partial void InsertEquipo(Equipo instance);
     partial void UpdateEquipo(Equipo instance);
     partial void DeleteEquipo(Equipo instance);
@@ -42,7 +39,7 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Models
     #endregion
 		
 		public PartidoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["partidoDBConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["partidoDBConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -71,14 +68,6 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Detalle> Detalle
-		{
-			get
-			{
-				return this.GetTable<Detalle>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Equipo> Equipo
 		{
 			get
@@ -95,152 +84,18 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.RegistroDetalleFecha")]
-		public int RegistroDetalleFecha([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> fecha, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> codequipo1, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> codequipo2, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> codigoFecha, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> gol1, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> gol2)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fecha, codequipo1, codequipo2, codigoFecha, gol1, gol2);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SPRegistroPartido")]
 		public int SPRegistroPartido([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> codequipo1, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> codequipo2, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> fecha, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> gol1, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> gol2)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codequipo1, codequipo2, fecha, gol1, gol2);
 			return ((int)(result.ReturnValue));
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.detalle")]
-	public partial class Detalle : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _fkIdFecha;
-		
-		private System.Nullable<int> _goles1;
-		
-		private System.Nullable<int> _goles2;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnfkIdFechaChanging(System.Nullable<int> value);
-    partial void OnfkIdFechaChanged();
-    partial void Ongoles1Changing(System.Nullable<int> value);
-    partial void Ongoles1Changed();
-    partial void Ongoles2Changing(System.Nullable<int> value);
-    partial void Ongoles2Changed();
-    #endregion
-		
-		public Detalle()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ListarPosiciones")]
+		public ISingleResult<SP_ListarPosicionesResult> SP_ListarPosiciones()
 		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fkIdFecha", DbType="Int")]
-		public System.Nullable<int> fkIdFecha
-		{
-			get
-			{
-				return this._fkIdFecha;
-			}
-			set
-			{
-				if ((this._fkIdFecha != value))
-				{
-					this.OnfkIdFechaChanging(value);
-					this.SendPropertyChanging();
-					this._fkIdFecha = value;
-					this.SendPropertyChanged("fkIdFecha");
-					this.OnfkIdFechaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goles1", DbType="Int")]
-		public System.Nullable<int> goles1
-		{
-			get
-			{
-				return this._goles1;
-			}
-			set
-			{
-				if ((this._goles1 != value))
-				{
-					this.Ongoles1Changing(value);
-					this.SendPropertyChanging();
-					this._goles1 = value;
-					this.SendPropertyChanged("goles1");
-					this.Ongoles1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goles2", DbType="Int")]
-		public System.Nullable<int> goles2
-		{
-			get
-			{
-				return this._goles2;
-			}
-			set
-			{
-				if ((this._goles2 != value))
-				{
-					this.Ongoles2Changing(value);
-					this.SendPropertyChanging();
-					this._goles2 = value;
-					this.SendPropertyChanged("goles2");
-					this.Ongoles2Changed();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ListarPosicionesResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -670,6 +525,86 @@ namespace MVCEliminatoria_EdgarDuarte_1193520.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class SP_ListarPosicionesResult
+	{
+		
+		private string _nombre;
+		
+		private System.Nullable<int> _Puntos;
+		
+		private System.Nullable<int> _GolesAF;
+		
+		private System.Nullable<int> _GolesEC;
+		
+		public SP_ListarPosicionesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(40)")]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puntos", DbType="Int")]
+		public System.Nullable<int> Puntos
+		{
+			get
+			{
+				return this._Puntos;
+			}
+			set
+			{
+				if ((this._Puntos != value))
+				{
+					this._Puntos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GolesAF", DbType="Int")]
+		public System.Nullable<int> GolesAF
+		{
+			get
+			{
+				return this._GolesAF;
+			}
+			set
+			{
+				if ((this._GolesAF != value))
+				{
+					this._GolesAF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GolesEC", DbType="Int")]
+		public System.Nullable<int> GolesEC
+		{
+			get
+			{
+				return this._GolesEC;
+			}
+			set
+			{
+				if ((this._GolesEC != value))
+				{
+					this._GolesEC = value;
+				}
 			}
 		}
 	}

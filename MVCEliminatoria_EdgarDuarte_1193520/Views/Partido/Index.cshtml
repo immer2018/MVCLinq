@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVCEliminatoria_EdgarDuarte_1193520.Models.Equipo>
+﻿@model IEnumerable<MVCEliminatoria_EdgarDuarte_1193520.Models.SP_ListarPosicionesResult>
 
 
 @{
@@ -14,9 +14,14 @@
             @Html.DisplayNameFor(model => model.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.puntos)
+            @Html.DisplayNameFor(model => model.Puntos)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.GolesAF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GolesEC)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -25,14 +30,16 @@
             @Html.DisplayFor(modelItem => item.nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.puntos)
+            @Html.DisplayFor(modelItem => item.Puntos)
         </td>
-        
-        
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
-           
+            @Html.DisplayFor(modelItem => item.GolesAF)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GolesAF)
+        </td>
+        
+        
     </tr>
 }
 

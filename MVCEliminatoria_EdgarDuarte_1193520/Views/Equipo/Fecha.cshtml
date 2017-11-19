@@ -1,0 +1,62 @@
+﻿@model MVCEliminatoria_EdgarDuarte_1193520.Models.Fecha
+
+
+
+@{
+    ViewBag.Title = "Fecha";
+}
+
+<h2>Fecha</h2>
+
+
+@using (Html.BeginForm("RegistroDetalle", "Equipo", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>fecha</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.TextBoxFor(model => model.fecha1, new { @class = "form-control", @required = "required", @type = "date" })
+                @Html.ValidationMessageFor(model => model.fecha1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fkIdE1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.fkIdE1, (List<SelectListItem>)ViewBag.lista)
+                
+
+                @Html.ValidationMessageFor(model => model.fkIdE1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fkIdE2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.DropDownListFor(x => x.fkIdE2, (List<SelectListItem>)ViewBag.lista)
+                @Html.ValidationMessageFor(model => model.fkIdE2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Siguiente" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Regrese al Inicio", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

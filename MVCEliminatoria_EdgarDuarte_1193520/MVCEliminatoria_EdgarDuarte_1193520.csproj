@@ -200,6 +200,7 @@
     <Content Include="Views\Partido\Index.cshtml" />
     <Content Include="Views\Partido\RegistroEquipo.cshtml" />
     <Content Include="Views\Partido\Partido.cshtml" />
+    <Content Include="Views\Partido\ListadoEquipos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

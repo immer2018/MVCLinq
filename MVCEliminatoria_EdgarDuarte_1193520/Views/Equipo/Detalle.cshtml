@@ -1,32 +1,26 @@
-﻿@model MVCEliminatoria_EdgarDuarte_1193520.Models.Partido
+﻿@model MVCEliminatoria_EdgarDuarte_1193520.Models.Detalle
 
 @{
-    ViewBag.Title = "Partido";
+    ViewBag.Title = "Detalle";
 }
 
-<h2>Partido</h2>
+<h2>View</h2>
 
 
-@using (Html.BeginForm("RegistroDetalle", "Partido", FormMethod.Post)) 
+@using (Html.BeginForm("RegistroDetalle", "Equipo",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Partido</h4>
+        <h4>detalle</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fkIdFecha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.fecha, new { @class = "form-control", @required = "required", @type = "date" } )
-                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Equipo 1</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.idequipo1, (List<SelectListItem>)ViewBag.lista)
-                @Html.ValidationMessageFor(model => model.idequipo1, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(x => x.fkIdFecha, (List<SelectListItem>)ViewBag.lista)
+               
+                @Html.ValidationMessageFor(model => model.fkIdFecha, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -39,24 +33,16 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Equipo 2</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.idequipo2, (List<SelectListItem>)ViewBag.lista)
-                @Html.ValidationMessageFor(model => model.idequipo2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.goles2, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.goles2, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.goles2, "", new { @class = "text-danger" })
             </div>
         </div>
-       
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar Partido" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -64,6 +50,7 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+    <span class="alert alert-danger">ViewBag.error</span>
 </div>
 
 @section Scripts {

@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="partidoDB" Class="PartidoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=EDGAR\SQLEXPRESS;Initial Catalog=partidoDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="partidoDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.detalle" Member="Detalle">
-    <Type Name="Detalle">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="fkIdFecha" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="goles1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="goles2" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=EDGAR\SQLEXPRESS;Initial Catalog=partidoDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="partidoDBConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.equipo" Member="Equipo">
     <Type Name="Equipo">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -29,15 +21,6 @@
       <Association Name="Equipo_Partido1" Member="Equipo1" ThisKey="idequipo2" OtherKey="id" Type="Equipo" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.RegistroDetalleFecha" Method="RegistroDetalleFecha">
-    <Parameter Name="fecha" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="codequipo1" Type="System.Int32" DbType="Int" />
-    <Parameter Name="codequipo2" Type="System.Int32" DbType="Int" />
-    <Parameter Name="codigoFecha" Type="System.Int32" DbType="Int" />
-    <Parameter Name="gol1" Type="System.Int32" DbType="Int" />
-    <Parameter Name="gol2" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.SPRegistroPartido" Method="SPRegistroPartido">
     <Parameter Name="codequipo1" Type="System.Int32" DbType="Int" />
     <Parameter Name="codequipo2" Type="System.Int32" DbType="Int" />
@@ -45,5 +28,13 @@
     <Parameter Name="gol1" Type="System.Int32" DbType="Int" />
     <Parameter Name="gol2" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ListarPosiciones" Method="SP_ListarPosiciones">
+    <ElementType Name="SP_ListarPosicionesResult">
+      <Column Name="nombre" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Puntos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GolesAF" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GolesEC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>
